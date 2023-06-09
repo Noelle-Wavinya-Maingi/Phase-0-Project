@@ -1,0 +1,57 @@
+* {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-family: "Nanum Myeongjo", serif;
+}
+body {
+  background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+}
+.navbar {
+  display: flex;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  padding: 14px 0;
+  margin-top: 30px;
+}
+nav ul {
+  display: inline-flex;
+  padding-left: 950px;
+  margin-top: 25px;
+}
+nav ul li {
+  list-style: none;
+  padding: 10px 30px 10px 30px;
+  text-transform: uppercase;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+nav li:hover {
+  background: linear-gradient(
+    -180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  color: black;
+}
+.Section1 img {
+  width: 90%;
+  height: 600px;
+  padding-left: 80px;
+  padding-right: 80px;
+  opacity: 0.4;
+}
+.centre {
+  font-size: 20px;
+  font-weight: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+button{
+    font-size: 20px;
+    position: absolute;
+    left: 30%;
+}
