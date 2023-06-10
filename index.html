@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
@@ -13,6 +13,91 @@
         ATT
     </title>
     <link rel="icon" href="./img/How Mind-Boggling Brain Research Is Changing the Way We Parent.jpeg">
+    <script>
+        let currentRating = 0;
+
+        function setRating(rating) {
+            currentRating = rating;
+            highlightStars(rating);
+        }
+
+        function highlightStars(rating) {
+            const stars = document.querySelectorAll('.rating > span');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('checked');
+                } else {
+                    star.classList.remove('checked');
+                }
+            });
+        }
+
+        function rateProduct(event) {
+            const selectedStar = event.target;
+            if (selectedStar.tagName === "SPAN") {
+                const rating = selectedStar.getAttribute("data-value");
+                resetStars();
+                selectedStar.classList.add("selected");
+                console.log("Rating: " + rating);
+            }
+        }
+
+        function resetStars() {
+            const stars = document.querySelectorAll(".rating > span");
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].classList.remove("selected");
+            }
+        }
+
+        function validateForm(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Clear previous error messages
+            document.getElementById("name-error").textContent = "";
+            document.getElementById("email-error").textContent = "";
+            document.getElementById("message-error").textContent = "";
+
+            // Get form input values
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            let isValid = true;
+
+            // Validate name field
+            if (name === "") {
+                document.getElementById("name-error").textContent = "Name is required.";
+                isValid = false;
+            }
+
+            // Validate email field
+            if (email === "") {
+                document.getElementById("email-error").textContent = "Email is required.";
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                document.getElementById("email-error").textContent = "Please enter a valid email address.";
+                isValid = false;
+            }
+
+            // Validate message field
+            if (message === "") {
+                document.getElementById("message-error").textContent = "Message is required.";
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Submit the form 
+                console.log("Form submitted successfully!");
+            }
+        }
+
+        function validateEmail(email) {
+            // Email validation pattern
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+    </script>
+
 </head>
 
 <body>
@@ -21,16 +106,16 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="">Home</a>
+                        <a href="/index.html">Home</a>
                     </li>
                     <li>
-                        <a href="">About Us</a>
+                        <a href="/index.html">About Us</a>
                     </li>
                     <li>
-                        <a href="">Products</a>
+                        <a href="/index.html">Products</a>
                     </li>
                     <li>
-                        <a href="">Blog</a>
+                        <a href="/index.html">Blog</a>
                     </li>
                     <li>
                         <a href="">contact Us</a>
@@ -55,7 +140,7 @@
                     takes a personalized approach, working closely with you to assess your specific needs and develop
                     customized security strategies. Whether it's securing your network, protecting sensitive data, or
                     implementing access controls, our solutions are tailored to fit your organization perfectly. </p>
-                <button id="btn"><a href="About.html">Read More</a></button>
+                <button id="btn"><a href="index.html">Read More</a></button>
             </div>
             <h2 class="header">Our Highest-Rated Antivirus Protection Available</h2>
             <div class="card">
@@ -118,12 +203,12 @@
             <div class="Cardbox">
                 <h3>Determine the safety of your files and ensure their protection.</h3>
                 <i class="fal fa-file-check fa-spin" style="color: #ec1809;"></i><br><br>
-                <button id="btn1"><a href="/">Speed Up Now!</a></button>
+                <button id="btn1"><a href="/">Try Housecall Now!</a></button>
             </div>
             <div class="Cardbox">
                 <h3>Verify whether your message is fraudulent or legitimate.</h3>
                 <i class="fal fa-comments-alt fa-spin" style="color: #f92b06;"></i><br><br>
-                <button id="btn1"><a href="/">Speed Up Now!</a></button>
+                <button id="btn1"><a href="/">Check Now!</a></button>
             </div>
         </div>
         <h2 class="header">We are the global leading Company in CyberSecurity</h2>
@@ -144,7 +229,7 @@
         </div>
         <h2 class="header">Blogs</h2>
         <div class="card">
-            <div class="Cardbox">
+            <article class="wrapper">
                 <h2>Title: Exploring the Future World of Tech: Documentaries and Investigations Unveil the Marvels Ahead
                 </h2>
                 <p>
@@ -160,8 +245,8 @@
                     highlighting their ability to educate, inspire, and provoke discussions about the transformative
                     power of technology.</p>
                 <button id="btn1"><a href="">Read More</a></button>
-            </div>
-            <div class="Cardbox">
+            </article>
+            <article class="wrapper">
                 <h2>Title: Network Security Key: Understanding its Importance and How to Use It</h2>
                 <p>Introduction:
 
@@ -181,8 +266,8 @@
 
                 </p>
                 <button id="btn1"><a href="">Read More</a></button>
-            </div>
-            <div class="Cardbox">
+            </article>
+            <article class="wrapper">
                 <h2>Title: Unveiling the World of Threat Analysis, Statistics, and the Virus Encyclopedia</h2>
                 <p>
                     Introduction:
@@ -202,8 +287,8 @@
 
                 </p>
                 <button id="btn1"><a href="">Read More</a></button>
-            </div>
-            <div class="Cardbox">
+            </article>
+            <article class="wrapper">
                 <h2>Title: Your Guide to Detecting Malware on Your Device: Keeping Your Digital World Secure</h2>
                 <p>
 
@@ -220,12 +305,15 @@
                     software can detect and remove known malware, as well as identify suspicious files and behaviors.
                 </p>
                 <button id="btn1"><a href="">Read More</a></button>
-            </div>
+            </article>
         </div>
         <h3 class="header">Subscribe here to receive newsletters and new blogs from us:</h3>
-        <form method="post" class="form">
-            <input type="email" placeholder="Enter your email" id="input" />
-            <button><a href="">Subscribe here</a></button>
+        <form class="forms">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter email address" required>
+            <span class="error-message" id="email-error"></span>
+
+            <button type="submit">Submit</button>
         </form>
 
         <h2 class="header">
@@ -233,49 +321,202 @@
         </h2>
         <div class="card">
             <div class="container">
-                <img src="img/soybreno-mujjsLZdH1g-unsplash (1).jpg" alt="Brianna" class="image" style="width:100%">
+                <img src="./img/soybreno-mujjsLZdH1g-unsplash (1).jpg" alt="Brianna" class="image" style="width:100%">
                 <div class="middle">
-                  <div class="text">
-                    <h4>Brianna Jones</h4>
-                    <h4>Cloud Security Specialist</h4>
-                  </div>
+                    <div class="text">
+                        <h4>Brianna Jones</h4>
+                        <h4>Cloud Security Specialist</h4>
+                    </div>
                 </div>
-              </div>
-              <div class="container">
-                <img src="img/pexels-luiz-woellner-fotografia-17013947.jpg" alt="Ernest" class="image" style="width:100%">
+            </div>
+            <div class="container">
+                <img src="./img/pexels-luiz-woellner-fotografia-17013947.jpg" alt="Ernest" class="image"
+                    style="width:100%">
                 <div class="middle">
-                  <div class="text">
-                    <h4>Ernest Brown</h4>
-                    <h4>Chief Information Security Officer</h4>
-                  </div>
+                    <div class="text">
+                        <h4>Ernest Brown</h4>
+                        <h4>Chief Information Security Officer</h4>
+                    </div>
                 </div>
-              </div>
-              <div class="container">
-                <img src="img/pexels-luiz-woellner-fotografia-17056748.jpg" alt="Jacob" class="image" style="width:100%">
+            </div>
+            <div class="container">
+                <img src="./img/pexels-luiz-woellner-fotografia-17056748.jpg" alt="Jacob" class="image"
+                    style="width:100%">
                 <div class="middle">
-                  <div class="text">
-                    <h4>Jacob Michaels</h4>
-                    <h4>Malware Analyst</h4>
-                  </div>
+                    <div class="text">
+                        <h4>Jacob Michaels</h4>
+                        <h4>Malware Analyst</h4>
+                    </div>
                 </div>
-              </div>
-              <div class="container">
-                <img src="img/pexels-luiz-woellner-fotografia-16756655.jpg" alt="Emma" class="image" style="width:100%">
+            </div>
+            <div class="container">
+                <img src="./img/pexels-luiz-woellner-fotografia-16756655.jpg" alt="Emma" class="image"
+                    style="width:100%">
                 <div class="middle">
-                  <div class="text">
-                    <h4>Emma Otto</h4>
-                    <h4>Application Security Engineer</h4>
-                  </div>
+                    <div class="text">
+                        <h4>Emma Otto</h4>
+                        <h4>Application Security Engineer</h4>
+                    </div>
                 </div>
-              </div>
+            </div>
+            <div class="container">
+                <img src="./img/pexels-luiz-woellner-fotografia-16958143.jpg" alt="Joel" class="image"
+                    style="width:100%">
+                <div class="middle">
+                    <div class="text">
+                        <h4>Joel Malcolm</h4>
+                        <h4>Security Architect</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 class="header">Testimonials</h2>
+        <div class="card">
+            <article class="wrapper">
+                <h4>"I've been using this antivirus software for over a year now, and I couldn't be happier. It has kept
+                    my computer safe from all sorts of malware and viruses. The real-time scanning feature is excellent,
+                    and I appreciate the regular updates that ensure my system is always protected. Highly recommended!"
+                </h4>
+                <h5>~Joy M</h5>
+                <div class="rating" onclick="rateProduct(event)">
+                    <span data-value="1">&#x2606;</span>
+                    <span data-value="2">&#x2606;</span>
+                    <span data-value="3">&#x2606;</span>
+                    <span data-value="4">&#x2606;</span>
+                    <span data-value="5">&#x2606;</span>
+                </div>
+            </article>
+            <article class="wrapper">
+                <h4>"I've tried several antivirus programs in the past, but none of them were as effective as this one.
+                    It not only detects and removes threats but also provides comprehensive web protection. The
+                    interface is user-friendly, and the system scans are quick and thorough. Thanks to this antivirus, I
+                    feel confident in the security of my computer." </h4>
+                <h5>~Emmanuel S</h5>
+                <div class="rating" onclick="rateProduct(event)">
+                    <span data-value="1">&#x2606;</span>
+                    <span data-value="2">&#x2606;</span>
+                    <span data-value="3">&#x2606;</span>
+                    <span data-value="4">&#x2606;</span>
+                    <span data-value="5">&#x2606;</span>
+                </div>
+            </article>
+            <article class="wrapper">
+                <h4>"I'm not the most tech-savvy person, but this antivirus software makes it simple for me to protect
+                    my computer. The installation was a breeze, and the software runs quietly in the background without
+                    slowing down my system. It has caught several potential threats and prevented them from causing any
+                    harm. I feel much safer browsing the internet with this antivirus in place."
+                </h4>
+                <h5>~James K</h5>
+                <div class="rating" onclick="rateProduct(event)">
+                    <span data-value="1">&#x2606;</span>
+                    <span data-value="2">&#x2606;</span>
+                    <span data-value="3">&#x2606;</span>
+                    <span data-value="4">&#x2606;</span>
+                    <span data-value="5">&#x2606;</span>
+                </div>
+            </article>
+            <article class="wrapper">
+                <h4>I run a small business, and data security is crucial for us. We started using this antivirus
+                    software, and it has been a game-changer. It's easy to deploy across multiple devices, and the
+                    centralized management console makes it convenient to monitor and control the security of our
+                    network. We haven't experienced any security breaches since we started using it, and that speaks
+                    volumes about its effectiveness."
+                </h4>
+                <h5>~Lisa M</h5>
+                <div class="rating" onclick="rateProduct(event)">
+                    <span data-value="1">&#x2606;</span>
+                    <span data-value="2">&#x2606;</span>
+                    <span data-value="3">&#x2606;</span>
+                    <span data-value="4">&#x2606;</span>
+                    <span data-value="5">&#x2606;</span>
+                </div>
+            </article>
+        </div>
+        <div>
+            <h2 class="header">Contact us</h2>
+            <p class="contact">For product inquiries, technical support, and other questions, here are all the ways you
+                can contact us here at All Things Tech:</p><br>
+        </div>
+        <div class="form">
+            <form onsubmit="validateForm(event)">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter full name" required>
+                <span class="error-message" id="name-error"></span>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter email address" required>
+                <span class="error-message" id="email-error"></span>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <span class="error-message" id="message-error"></span>
+
+                <button type="submit">Submit</button>
+            </form>
         </div>
     </div>
 
     <footer>
-        <h6>
-            hey i am the footer
-        </h6>
+        <div class="footer">
+            <h2>Quick links</h2>
+            <ul>
+                <li>
+                    <a href="index.html">About Us</a>
+                </li>
+                <li>
+                    <a href="index.html">Product</a>
+                </li>
+                <li>
+                    <a href="index.html">Blog</a>
+                </li>
+                <li>
+                    <a href="index.html">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer">
+            <h2>Contacts</h2>
+            <ul>
+                <li>
+                    <a href="tel: 254725531709">(254)-725-531-709</a>
+                </li>
+                <li>
+                    <a href="tel: 254722310349">(254)-722-310-349</a>
+                </li>
+                <li>
+                    <a href="mailto:attech@allthings.co.ke">attech@allthings.co.ke</a>
+                </li>
+                <li>
+                    <a href="mailto: allthings@attech.co.ke">allthings@attech.co.ke</a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer">
+            <h2>Socials</h2>
+            <ul class="socials">
+                <li>
+                    <a href="https://facebook.com"><i class="fab fa-facebook-messenger"></i></a>
+                </li>
+                <li>
+                    <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a href="https://google.com"><i class="fab fa-google"></i></a>
+                </li>
+                <li>
+                    <a href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+                </li>
+                <li>
+                    <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+                </li>
+            </ul>
+            <h6 class="copy"><i class="fal fa-copyright fa-sm"></i>2023 All Things Tech</h6>
+        </div>
+        <div class="copy">
+
+        </div>
     </footer>
+
 </body>
 
 </html>
